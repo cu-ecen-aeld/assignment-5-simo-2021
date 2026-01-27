@@ -6,6 +6,10 @@ Pour le tester dans un premier temps
 	ouvrir une 2e fenetrre: lancer nc localhost 9000
 	mais avant il faudrait dans le premiere fenetre lancer: ./aesdsocket
 
+Enfin pour faire fonctionner le programme: 
+	dans une fenetre lancer: ./sockettest.sh  (depuis: cd aesd-assignments/assignment-autotest/test/assignment5)
+	mais avant il faudrait dans le premiere fenetre lancer: ./aesdsocket
+	
 Des que tout est bon lance: ./sockettest.sh (de la meme maniere laiser tourner d'abord ./aesdsocket
 # 
 */
@@ -87,7 +91,7 @@ int main(int argc, char *argv[]) {
     openlog("Log_aesdsocket", LOG_PID, LOG_USER);
     /*-------------------------------------End-Configs-------------------------------------------*/
      
-    /*-------------------------- option -d (mode daemon) ---------------------------------------*/
+    /*--------------------------- option -d (mode daemon) ---------------------------------------*/
     if (argc > 1 && strcmp(argv[1], "-d") == 0) {
         is_daemon = 1;
 
@@ -111,16 +115,16 @@ int main(int argc, char *argv[]) {
         printf("Pour lancer en daemon : %s -d\n", argv[0]);
         printf("Arrêter le daemon : kill $(pgrep aesdsocket)\n");
     }
-    /*------------------------ End -option -d (mode daemon) ------------------------------------*/         
+    /*------------------------- End -option -d (mode daemon) ------------------------------------*/         
     
-    /*-----------------------2.b Opens a stream socket bound to port ---------------------------*/
+    /*------------------------2.b Opens a stream socket bound to port ---------------------------*/
     server_fd = socket(AF_INET, SOCK_STREAM, 0);
     if (server_fd == -1) {
     	syslog(LOG_ERR, "Failed to create server socket: %m");
         closelog(); 
         return EXIT_FAILURE; // Remplacer return -1 par EXIT_FAILURE
     }
-    /*------------------------End -2.b ---------------------------------------------------------*/
+    /*-------------------------End -2.b ---------------------------------------------------------*/
     
     /*--------------------------------------Configs Socket--------------------------------------*/
     // Option pour réutiliser le port (évite "port déjà utilisé")
